@@ -19,6 +19,10 @@
 
     <link rel="stylesheet" type="text/css" href="styles.css">
 
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
     <!-- Bootstrap Core CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -34,9 +38,35 @@
     <!-- Custom CSS -->
     <style>
     body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        padding-top: 15px;
+        font-family: 'Source+sans+pro', sans-serif ;      
     }
+
+/*    .panel {
+      border: none;
+      background-color: #e1e1e1;
+    }*/
+
+    .panel-heading {
+      background-color: #62778A;
+      color: white;
+      border-color: #ddd;
+    }
+
+    #submit {
+      background-color: #62778A;
+      color: white;
+
+    }
+
+    .container {
+      background: #fafafa;
+      border: 2px solid #ebebeb;
+      border-radius: 15px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
 
 
     </style>
@@ -53,39 +83,41 @@
 <body>
 
     <!-- Page Content -->
-    <div class="container" style="max-width: 600px">
+    <div class="container" style="max-width: 600px;">
 
     <!-- Logo -->
-        <div class="row" style="align:middle">
-            <div class="col-md-2">
-              <img id="plane-img" src="paper-plane.png" style="width: 60 px; height: 60px; margin: 0;" class="img-responsive"> </img>
-            </div>
-            <div class="col-md-4 text-center">
-                <h2>Flight Time</h2>
-            </div>
+        <div class="row" style="align: middle">
+              <div class="col-md-4">
+                <img id="plane-img" src="paper-plane.png" style="width: 65 px; height: 65px; margin-left: 3cm;" class="img-responsive"> </img>
+              </div>
+              <div class="col-md-6">
+                  <h2>Flight Time</h2>
+          </div>
         </div>
 
+
         <div class="row text-center">
-          <p>We calculate so you can be lazy af! Woo!</p>
+          <p>We calculate so you can be lazy!</p>
         </div>
         <!-- /.row -->
 
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Find your estimated waiting </h3>
-          </div>
 
+         <!-- Panel Body -->
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Enter your flight information</h3>
+          </div>
           <form action="/result" method="POST" id="flightform">
 
-            <!-- Panel Body --> <!-- Flight Information (First div class) -->
+         <!-- Flight Information (First div class) -->
           <div class="panel-body">
               <div class="form-group row">
                 <div class="col-xs-6">
-                  <label for="flightnum" class="col-form-label">Flight Identification Number</label>
+                  <label for="flightnum" class="col-form-label">What is your flight number?</label>
                   <input class="form-control" type="text" value="1986" name="flightnum">
                 </div>
                 <div class="col-xs-6">
-                  <label for="flightdate" class="col-form-label">Date of Origin Flight</label>
+                  <label for="flightdate" class="col-form-label">When are you leaving?</label>
                   <input class="form-control" type="text" value="2016-09-09" name="flightdate">
                 </div>
               </div>
@@ -93,7 +125,7 @@
               <!-- Location -->
               <div class="form-group row">
                 <div class="col-xs-6">
-                  <label for="loc-end-id" class="col-form-label">My Location</label>
+                  <label for="loc-end-id" class="col-form-label">Where are you starting?</label>
                   <input class="form-control" type="location" value="Georgia Tech" id="loc-end-id">
                 </div>
                 <div class="col-xs-6">
@@ -102,13 +134,12 @@
                   </button>
                 </div>
               </div>
-          </div>
 
-          <!-- Submit -->
-          <div class="panel-footer" style="alight">
-              <button type="button" name="submit" id="submit" class="btn btn-primary">
-                Submit
-              </button>
+              <!-- Submit -->
+              <div class="col-md-12">
+              <button type="button" name="submit" id="submit" class="btn" style="width: 30%; height: 100%; margin: 0 auto">Submit</button>
+              </div>
+
           </div>
           </form>
         </div>
@@ -120,31 +151,10 @@
           style="width:40px;heigh40px;display:block;margin:0 auto;margin-top:40px;">
         </div>
 
-        <!-- Second Panel --> <!--Trip Outlook -->
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Trip Outlook</h3>
-          </div>
-          <div class="panel-body">
-            <form>
-              <!-- Time -->
-            <div class="form-group row">
-              <div class="col-xs-6">
-            <input type="time" id="time" value="5:53:05"/>
-            </div>
-            </div>
-
-            <div class="form-group row" style="margin: 0 auto">
-            <button type="button" name="incTime" id="incTime" class="btn btn-primary">+</button>
-            <button type="button" name="decTime" id="decTime" class="btn btn-primary">-</button>
-            </div>
-            </form>
-          </div>
-        </div>
 
 
 <!-- Icon credit -->
-<a href="http://www.freepik.com/free-vector/airplane-silhouette_810230.htm">Icon image designed by Freepik</a>
+<a href="http://www.freepik.com/free-icon/paper-plane_930719.htm#term=airplane&page=12&position=9">Icon image designed by Freepik</a>
 </body>
 
 </html>
