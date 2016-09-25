@@ -1,8 +1,11 @@
-<div class="panel">
-    <div class="panel-heading">Flight <%= @num %></div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Trip Planning for Flight <b>#<%=@num %></b></div>
     <div class="panel-body">
-    <p>current TSA delay: <%= @data %></p>
-    <p>depart code: <%= @departCode %></p>
-    <p>depart city: <%= @departCity %></p>
+    <p>TSA checkpoint: <%= @delayTSA%> minutes</p>
+    <p>Transportation: <%=@delayTravel%> minutes</p>
+    <p>Time: <%=@currTime%></p>
+    <p>Departure: <%=@departTime%></p>
+    <p>Recommend you leave at: <%=@leaveAt%></p>
     </div>
 </div>
