@@ -2,7 +2,7 @@
 # @Author: matt
 # @Date:   2016-09-24 11:15:35
 # @Last Modified by:   Matt
-# @Last Modified time: 2016-09-25 08:01:20
+# @Last Modified time: 2016-09-25 11:01:37
 require 'sinatra/base'
 require 'net/http'
 require 'json'
@@ -33,7 +33,7 @@ class FlightServlet < Sinatra::Base
         response = Net::HTTP.get(URI(flighturl))
         json = JSON.parse(response)
         departCode = json["flightStatusResponse"]["statusResponse"]["flightStatusTO"]["flightStatusLegTOList"]["departureAirportCode"]
-        @departTime = Time.parse(json["flightStatusResponse"]["statusResponse"]["flightStatusTO"]["flightStatusLegTOList"]["departureLocalTimeEstimatedActual"])
+        @departTime = Time.parse(json["flightStatusResponse"]["statusResponse"]["flightStatusTO"]["flightStatusLegTOList"]["departureLocalTimeScheduled"])
 
         # FLIGHT WAITLIST INFO
         tsaurl = "https://demo30-test.apigee.net/v1/hack/tsa?airport=" + departCode + "&apikey=FQFMhNJmXqB34vRNk4THrnT9RiRnLiUG"
