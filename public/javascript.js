@@ -1,15 +1,27 @@
 $(document).ready(function(){
 
+    // var destinationA = '6000 N Terminal Pkwy, Atlanta, GA 30320';
     var userlocation;
-    var destinationA = '6000 N Terminal Pkwy, Atlanta, GA 30320';
-    // var formdata = $("#flightform").serialize();
     var flightnum;
     var flightdate;
     var duration;
     var pos;
-
+    //local time for user
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    document.getElementById("flightdate").defaultValue = (yyyy + '-' + mm + '-' + dd);
+    //disable GPS button if not SSL certificate
+    if (location.protocal !== 'https:') {
+        $("#gpsText").html('GPS Requires HTTPS')
+        document.getElementById("gpsBtn").disabled = true;
+    }
+    //get location
     $("#gpsBtn").click(function(){
-      navigator.geolocation.getCurrentPosition(function(position) {
+        navigator.geolocation.getCurrentPosition(function(position) {
              pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
@@ -29,7 +41,7 @@ $(document).ready(function(){
                 console("We were not able to parse this into a real address");
               }
             });
-          });
+        });
 
     });
 
@@ -81,7 +93,8 @@ $(document).ready(function(){
                             data: {
                                 flightdate: flightdate,
                                 flightnum: flightnum,
-                                mapdelay: duration
+                                mapdelay: duration,
+                                usertime: today
                             },
                             success: function(result){
                                 $("#container-warning").html("")
