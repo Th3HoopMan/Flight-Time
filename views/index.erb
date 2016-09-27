@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Flight Time</title>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTBk3UaCJDysJBFEWM5RxOsPBfV55A6MI"
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=@GoogleGeocoderApiKey%>"
      type="text/javascript"></script>
     <!-- javascript ajax call on submit -->
     <script type="text/javascript" src="javascript.js"></script>
@@ -27,6 +27,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
@@ -49,7 +50,7 @@
     <!-- Logo -->
         <div class="row" style="align: middle">
           <div class="col-md-4">
-            <img id="plane-img" src="paper-plane.png" style="width: 65 px; height: 65px; margin-left: 3cm;" class="img-responsive"> </img>
+            <img id="plane-img" src="img/paper-plane.png" style="width: 65 px; height: 65px; margin-left: 3cm;" class="img-responsive"> </img>
             </div>
             <div class="col-md-6">
               <h2>Flight Time</h2>
@@ -64,7 +65,7 @@
         <!-- Panel Body -->
         <div class="panel">
           <div class="panel-heading">
-            <h5 class="panel-title">Enter your flight information</h5>
+            <h5 class="panel-title">Enter your Delta Airlines flight information</h5>
           </div>
           <form action="/result" method="POST" id="flightform">
 
@@ -104,16 +105,18 @@
 
         <div id="container-warning"></div>
 
-        <div id="result-panel">
-        </div>
-        <div id="spinner-div" style="visibility:hidden;">
+        <div id="spinner-div" style="display:none;">
           <img src="/img/spinner.gif" id="spinner" align="middle"
-          style="width:40px;heigh40px;display:block;margin:0 auto;margin-top:40px;">
+          style="width:40px;height: 40px;display:block;margin:0 auto;margin-top:40px;margin-bottom:40px;">
         </div>
 
+        <div id="result-panel"></div>
 
-<!-- Icon credit -->
-<a href="http://www.freepik.com/free-vector/airplane-silhouette_810230.htm">Icon image designed by Freepik</a>
+<div id="website-info" class="pull-right">
+<a  href="https://github.com/Th3HoopMan/Flight-Time" target="_blank"><i class="fa fa-github text-muted" aria-hidden="true"> Github</i></a>
+<a href="http://www.freepik.com" target="_blank"><i class="fa fa-external-link text-muted" aria-hidden="true" > Icon image designed by Freepik</i></a>
+</div>
 </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
 
 </html>

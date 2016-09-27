@@ -1,33 +1,46 @@
 <div class="alert alert-success" role="alert">
-<h5 class="text-xs-center suggestHead">We recommend you leave for the airport at  <div class="timeText"><b><%=@leaveAt%> </b></div> to be there right on time!</h5>
+<h5 class="text-xs-center suggestHead">We recommend you leave for the airport 
+<%if @currDate.strftime("%D") == @departDate.strftime("%D") && @leaveAt < @currDate%>
+  at <div class="timeText"><b><%=@leaveAtSameDay%></b></div>
+<% else %>
+  on <div class="timeText"><b><%=@leaveAtTxt%></b></div>
+<%end%>
+ to be there right on time!</h5>
 </div>
 
 <div class="panel">
     <div class="panel-heading">
-      <h5 style="margin:0px;" class="text-xs-center">Our calculations tell us...</h5>
+      <h5 style="margin:0px;" class="text-xs-center">
+        Our calculations tell us...
+      </h5>
     </div>
     <div class="panel-body">
-
-    <div class="row dataRow">
-      <!-- Car icon by Icons8 -->
-  <img class="icon icons8-Car" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADLklEQVR4Xu1Z4ZVOMRC9W4FVAdvBqgAVoIKlAlSAClABKlhbwVIBKkAFqIBzj5cjZ7xkZpJ82bzzknP2z74kM3NzZ3In3xF2Po52Hj8mAJMBO0dgpsDOCTCL4EyBmQI7R2CmQAMCnAF4COAUwHGD/Sxb/ATwGcBbAO8sC1JzahjAYC+XwGt8qF1LIO4CICjuUQPApwGCDwEThFvu6IFiHUDKvykxeMA1j5aUcJkoZYA8febhk1Iaujz+O5np9woA608VC0oAuAngq3D6esfgg2mC8EP4cQLgmwfQEgB40i8jIx8B3PEYbTj3A4Db0X5PF2aYTZQA8B7AvRqjZu/0ifIwLgDc15f9m+EFoAntPA4qc6vT0QsA0T2PnPoOgE5c5WDO34gceACALDUNLwBUXnHlfb1Uf5OxA03ibfA42ps3Eq9p0/ACwKoby10qMBaiqxwswFSkYVAR8lYyjRwALDCkFhGl0qLW5/0fxq+O2l8LhkFfiyZRFQafydgvKZGUA4B3fchv5hmNEIQwXFTTIqj8LlOTwZOpwf+kVE4BIE+70r8hlq+KpBQAsrAMEUGlE6siKZcCZAGrKa+++Jqp9KPrctYpXonh7z/j1ltgpNbXiiDrFmmfHRYARlN/qYDW6pbapFkAkL3/COovBYJUheobgQUA2fwE9UdmPIuaD15FLzTKNfies+tWhRYAUupv7aboIY1zdmWvoqpCCwC/xamFNRIYTjMVnkoWaHZT/q6arQFAyk8a6FEfNLvdAHi+1IAYWdYA/v+QQ7PbDQAGyXwMLzAsgocOPgCbs9sVAO2kW/QUobPTbIXvQwEguzRrEPE8b9c5DABrCrIEAK5RFV208TAAyBfb0uC5zvPcPQwA8YMKg/DcELLSe/TFEABIRca2lK8z1l9wmT4MOn7msr72DgFADd1r104AEtK9mRSuPaHe67Nyv6QX6B1Arb0JQA7ByQADv9baz3hZj0eQlJva873anlsYwN/eqOlTT+PeZsWAuXlKrtli8HzPzP52aQHA7M0WJ04AtnhqLX2eDGiJ5hb3mgzY4qm19HkyoCWaW9xrMmCLp9bS590z4A+oOaNBRA+wogAAAABJRU5ErkJggg==" width="64" height="64">
-</tr><p>It will take you approx. <b><%=@delayTravel%></b> minutes to drive to the airport</p>
+      <div class="row dataRow">
+        <div class="col-sm-2">
+          <!-- Car icon by Icons8 -->
+          <img class="icon icons8-Car" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADLklEQVR4Xu1Z4ZVOMRC9W4FVAdvBqgAVoIKlAlSAClABKlhbwVIBKkAFqIBzj5cjZ7xkZpJ82bzzknP2z74kM3NzZ3In3xF2Po52Hj8mAJMBO0dgpsDOCTCL4EyBmQI7R2CmQAMCnAF4COAUwHGD/Sxb/ATwGcBbAO8sC1JzahjAYC+XwGt8qF1LIO4CICjuUQPApwGCDwEThFvu6IFiHUDKvykxeMA1j5aUcJkoZYA8febhk1Iaujz+O5np9woA608VC0oAuAngq3D6esfgg2mC8EP4cQLgmwfQEgB40i8jIx8B3PEYbTj3A4Db0X5PF2aYTZQA8B7AvRqjZu/0ifIwLgDc15f9m+EFoAntPA4qc6vT0QsA0T2PnPoOgE5c5WDO34gceACALDUNLwBUXnHlfb1Uf5OxA03ibfA42ps3Eq9p0/ACwKoby10qMBaiqxwswFSkYVAR8lYyjRwALDCkFhGl0qLW5/0fxq+O2l8LhkFfiyZRFQafydgvKZGUA4B3fchv5hmNEIQwXFTTIqj8LlOTwZOpwf+kVE4BIE+70r8hlq+KpBQAsrAMEUGlE6siKZcCZAGrKa+++Jqp9KPrctYpXonh7z/j1ltgpNbXiiDrFmmfHRYARlN/qYDW6pbapFkAkL3/COovBYJUheobgQUA2fwE9UdmPIuaD15FLzTKNfies+tWhRYAUupv7aboIY1zdmWvoqpCCwC/xamFNRIYTjMVnkoWaHZT/q6arQFAyk8a6FEfNLvdAHi+1IAYWdYA/v+QQ7PbDQAGyXwMLzAsgocOPgCbs9sVAO2kW/QUobPTbIXvQwEguzRrEPE8b9c5DABrCrIEAK5RFV208TAAyBfb0uC5zvPcPQwA8YMKg/DcELLSe/TFEABIRca2lK8z1l9wmT4MOn7msr72DgFADd1r104AEtK9mRSuPaHe67Nyv6QX6B1Arb0JQA7ByQADv9baz3hZj0eQlJva873anlsYwN/eqOlTT+PeZsWAuXlKrtli8HzPzP52aQHA7M0WJ04AtnhqLX2eDGiJ5hb3mgzY4qm19HkyoCWaW9xrMmCLp9bS590z4A+oOaNBRA+wogAAAABJRU5ErkJggg==" width="64" height="64">
+        </div>
+        <div class="col-sm-10">
+          </tr><p>It will take you approx. <b><%=@delayTravel%></b> to drive to <%=@departureAirportName%> airport</p>
+        </div>
+      </div>
+      <div class="row dataRow">
+        <div class="col-sm-2">
+          <!-- Car icon by Icons8 -->
+          <img class="icon icons8-Policeman-Male" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAEuElEQVRoQ+2a/bGNQQzGcytABagAFaACVIAKUAEqQAXcClABKkAFqAAVML+ZN2ZvTrLJvruHf+zMmTP3vvuRJx9PsnnPiRx33BCRByJyVUTOi8gnEXkvIi9E5Mcxjj45xqab8C9F5HZn/+ci8nQ1sGMAAgRgsEg2vorI/c1q2dzS85WAAJBZJRIKaz0qSZxMWgXoroggVMUqkUjEF9bie/eYBXRpswrBH40PjUsx73oi7ZMttnaB2gsISzwTkXudU39uz9+YOcTYKxE511mLlXBBGHFojALCIrjXw4J7YZnIcgiaWQogKAMmLLthFdCtTds9GraaJM9cCNT7vaCQdimAiNHTzFwRILSHdvWT7RM9v7NpuX2OUl7v3XBzQyzMBy84MzxAX0QE11ox0Ow1s9HHrXJYsT957HK7kQcIv8XFVg0IQHNMRiSjZ7611YgHCDd7N7rzP5qP9c8QRhRD5ILHE0J+ExHcoTdw64sTZ8B+yJnGkE7AVaDo3kBwraD5BkQGxO4HMD5U5HgH3xlQ2M7NgRlte6BImPyfTzk/DFoCUAjMxybgEAxnZICYA/9zp2FgZv62dxk0fGXTrmqc+b3EynO1KIr57FiXioQkru7PPYq/w1EBxGJyB4e3FoEJ+T9Cr6J5ziC/wLQwmA4sxhm2jDoAVgWkC9EY1qqUPoNedjAdcLj10O12BBBAYJWZK8IekLg35wIsHSOAfqW7HXdCSdbSpE3O/4AWG6yk/NKkwEJUupU7zR5c3t4lWUuTNiLgDtMO1kKlMB70nWX3DBhVB7RMnoPhrIsf1G3ehhVAVMheMrNryRWaLzShwogk3HaQQDUxk3M0v9mqw4tZANNICZuUGSDaUlHfIFubWSR7HpGQd8f6s1dPKIAAKBpVQDbODm6ZwQE9VsVKJN2D0RPKNjJwFS09cCncEHfs1Wva024Pxl3Qcm8dF0JiiXnMt+2vsAHTA2QbGXZutXPTxowXU56iPYFbi4UNmB4gFrWlOx2cNhiridaesWcdimhZliuMW4KNuBzuhivoBY7vjKqhYluJj67zurMHvQQ1cw9Qr7dAp4WCMbvReveXyk2YdcQQHShv3Iy6qhlTRYdzIIDQdtTSxTqQgs0ZuEplHfvrxbIFNX1jhc3YvBVcgxKBAW2TJ0EN7Uf9hco6S0rEDXJguelcoq8T25hpc0HbYdWuZpY4eR6tszkwsvZQHrKTbWurm7EraDpzbHfVbVmNJlY7H7axQRoG5wQgj4xsyph2Od3AkgTuBaiVg65tW0V0ScAenLHc37aSZx1SRLl5OQoIgLbkWRlL9s1HmEAjl9gDCMolaNuhxeSM62mx2+4xZB0W7gHEOhtL5CVulGXXMMghHJTU1mdDsaP77QWEALham2xnCMISAUkUTxhW0F5AKMRzESxHwh0Z3q14twvPAPIIQt2xCsoD03t7nipqFpBXEnFo1syIfkZTLnFWspzdC18nfmzVDVFQSPKMWyuDIlav7/aCRtzwbOqd06yFFFwEKnWRbcISMDO07Qmq72/sVSIDhfX0/VM2N32+ykLtQVTlMGDvtzzMxyq45MGL31TqzoRjAOI44gOt82lfAutLZkiDz/Kfaf4GAXoHRDY3UfwAAAAASUVORK5CYII=" width="64" height="64">
+        </div>
+        <div class="col-sm-10">
+          </tr><p>It will take approx. <b><%= @delayTSA%></b> minutes to get through the TSA line</p>
+        </div>
+      </div>
+      <div class="row dataRow">
+        <div class="col-sm-2">
+          <!-- Car icon by Icons8 -->
+          <img class="icon icons8-Airport" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEZUlEQVRoQ9Waj5FMQRCH+yJABE4EiAARcBG4iwARIAJEgAi4CLgIEAEiQATUtzW/rb65eW+65z1X76Zqa+3uvJn+pv9OnwO7WuO6mT00s0dmxr8Zb8zs48EV4Tg0s+dmdjwh79HWQTh1AJ46gFMz+2xmX83sfvn9bMsgmM9bZ0LvzeyFmf1wUIB8MrNNgqAFAABhnBWNoIF6oKlXZna6NY3cKRC8/ykaeD3jx1/MjLknWwJBIMwEjXwrGvFmVPMQAL4X4MOtgHgIfAGT+d2JqO/M7LGZMf94CyA1xFSI9Vw8g1kxbhEAahAlHFT6s4oQ/yPljEAgByZIxHpZ/Mg8CBBMYHE/gOJF1EDdeieaLBmjEIpUBAP8ZGeCAvEQ0gQbXetI6sEAFHRPm6MQ/rkjShPJB4iHIFqgMu9oPMwcvmfwzufbAXVIe2RiBu88i6PyvnPUwDpM8XKS3ZVndo8DoliM8HeTfoFq/UvQEW1mIJCVJAk02mb9c1ENEMzhZjkVfkRdVJStTBo8vP00ac8DAs4evn7qrSsI/II1L8gm00JN0N5zKzIZE+DkejG9J8iS37sQ3tm1EafFSQHlHV1AsvUlgmWeDUG0QPwmwKApLjIamCG1z2VoKQzRA/FaAoqXfInfsHM0RQRZe6QgoiBeSPlSrSWZ3lyRF4VNQ4yAeC0BhT+tqSXM9kmpaJvRaeo01iga2RCzoxLVIOKRk7JDqeBc1o4ssgaI9tG1k8/ZZKc1iIqkgAelCogw7OasBTJaO9WCyrT2VW2UZA0QD0FFrJosKoOfR3OBrsmlg9TX07rgzMIQQD6UhkPqQJZoZG0IoOVn6WAxCkJJTdVMSdMq/bOa8PP/lg8p2VKTywa9+8scBD0ozIfQPFWI8j113o1MsZoFWQKhjA3oSSlvWtBDITgDshYEws/5ADUcJdAc7IUDiIKsAaFLESeO6WBercvbUAiuQXBewl/dSdEJZB27VQAq6U1lf8odnrtwL59zPg/iw2nrmQwEGuRACKf19VTNNZwah67HvsOeSa4C0SmwKNmZyDJ6vfVmOHXHxqTowrT8QD3dKdCmYgChJMAulxR7WjwCwVwdHP5CgViPdC4BRA9pMRbXK9NNjEKwD3Mp2XH6Xe+2IpHGwlUwINgkpsR7q+kWAaujGuv1bovqptN6qltDyiXhe0mriQ2QXjVYy25HQ7OcGmC04kc6BPfyCEISZdiUU8MUanWrU5mJahJ66kYokJa2Jp19LjxHTkk+lqqNysL7vwFWvdx0CO5pxINM3RXSEcYtqlDLV97plWtaZrdYI5jZr7KKP4AlICyn2upZaf5J0NS6GY2wQSsspjZsHKc0XZ++yvlWeL6wTBak1RxYCoJQcnofSFLlfBak9pMpc4sGEM2rC0l/Aw2V81kQLzhluP+7+FTFHIGqnV4VeDikZ0G8n0jA8GYdIpkSvqH/NBDuyoyAyAyQa7Sj2GLyFXj6cEZAlKzCWTdiW66QJDKmrxH/AKIhUzIuhk0UAAAAAElFTkSuQmCC" width="64" height="64">
+        </div>
+        <div class="col-sm-10">
+          </tr><p>And your flight is scheduled to depart at  <b> <%=@departTime%></b></p>
+        </div>
+      </div>
     </div>
-
-    <div class="row dataRow">
-      <!-- Car icon by Icons8 -->
-<img class="icon icons8-Policeman-Male" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAYAAADFeBvrAAAEuElEQVRoQ+2a/bGNQQzGcytABagAFaACVIAKUAEqQAXcClABKkAFqAAVML+ZN2ZvTrLJvruHf+zMmTP3vvuRJx9PsnnPiRx33BCRByJyVUTOi8gnEXkvIi9E5Mcxjj45xqab8C9F5HZn/+ci8nQ1sGMAAgRgsEg2vorI/c1q2dzS85WAAJBZJRIKaz0qSZxMWgXoroggVMUqkUjEF9bie/eYBXRpswrBH40PjUsx73oi7ZMttnaB2gsISzwTkXudU39uz9+YOcTYKxE511mLlXBBGHFojALCIrjXw4J7YZnIcgiaWQogKAMmLLthFdCtTds9GraaJM9cCNT7vaCQdimAiNHTzFwRILSHdvWT7RM9v7NpuX2OUl7v3XBzQyzMBy84MzxAX0QE11ox0Ow1s9HHrXJYsT957HK7kQcIv8XFVg0IQHNMRiSjZ7611YgHCDd7N7rzP5qP9c8QRhRD5ILHE0J+ExHcoTdw64sTZ8B+yJnGkE7AVaDo3kBwraD5BkQGxO4HMD5U5HgH3xlQ2M7NgRlte6BImPyfTzk/DFoCUAjMxybgEAxnZICYA/9zp2FgZv62dxk0fGXTrmqc+b3EynO1KIr57FiXioQkru7PPYq/w1EBxGJyB4e3FoEJ+T9Cr6J5ziC/wLQwmA4sxhm2jDoAVgWkC9EY1qqUPoNedjAdcLj10O12BBBAYJWZK8IekLg35wIsHSOAfqW7HXdCSdbSpE3O/4AWG6yk/NKkwEJUupU7zR5c3t4lWUuTNiLgDtMO1kKlMB70nWX3DBhVB7RMnoPhrIsf1G3ehhVAVMheMrNryRWaLzShwogk3HaQQDUxk3M0v9mqw4tZANNICZuUGSDaUlHfIFubWSR7HpGQd8f6s1dPKIAAKBpVQDbODm6ZwQE9VsVKJN2D0RPKNjJwFS09cCncEHfs1Wva024Pxl3Qcm8dF0JiiXnMt+2vsAHTA2QbGXZutXPTxowXU56iPYFbi4UNmB4gFrWlOx2cNhiridaesWcdimhZliuMW4KNuBzuhivoBY7vjKqhYluJj67zurMHvQQ1cw9Qr7dAp4WCMbvReveXyk2YdcQQHShv3Iy6qhlTRYdzIIDQdtTSxTqQgs0ZuEplHfvrxbIFNX1jhc3YvBVcgxKBAW2TJ0EN7Uf9hco6S0rEDXJguelcoq8T25hpc0HbYdWuZpY4eR6tszkwsvZQHrKTbWurm7EraDpzbHfVbVmNJlY7H7axQRoG5wQgj4xsyph2Od3AkgTuBaiVg65tW0V0ScAenLHc37aSZx1SRLl5OQoIgLbkWRlL9s1HmEAjl9gDCMolaNuhxeSM62mx2+4xZB0W7gHEOhtL5CVulGXXMMghHJTU1mdDsaP77QWEALham2xnCMISAUkUTxhW0F5AKMRzESxHwh0Z3q14twvPAPIIQt2xCsoD03t7nipqFpBXEnFo1syIfkZTLnFWspzdC18nfmzVDVFQSPKMWyuDIlav7/aCRtzwbOqd06yFFFwEKnWRbcISMDO07Qmq72/sVSIDhfX0/VM2N32+ykLtQVTlMGDvtzzMxyq45MGL31TqzoRjAOI44gOt82lfAutLZkiDz/Kfaf4GAXoHRDY3UfwAAAAASUVORK5CYII=" width="52" height="52">
-      </tr><p>It will take approx. <b><%= @delayTSA%></b> minutes to get through the TSA line</p>
-    </div>
-
-    <div class="row dataRow">
-      <!-- Car icon by Icons8 -->
-      <!-- Airport icon by Icons8 -->
-    <img class="icon icons8-Airport" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAEZUlEQVRoQ9Waj5FMQRCH+yJABE4EiAARcBG4iwARIAJEgAi4CLgIEAEiQATUtzW/rb65eW+65z1X76Zqa+3uvJn+pv9OnwO7WuO6mT00s0dmxr8Zb8zs48EV4Tg0s+dmdjwh79HWQTh1AJ46gFMz+2xmX83sfvn9bMsgmM9bZ0LvzeyFmf1wUIB8MrNNgqAFAABhnBWNoIF6oKlXZna6NY3cKRC8/ykaeD3jx1/MjLknWwJBIMwEjXwrGvFmVPMQAL4X4MOtgHgIfAGT+d2JqO/M7LGZMf94CyA1xFSI9Vw8g1kxbhEAahAlHFT6s4oQ/yPljEAgByZIxHpZ/Mg8CBBMYHE/gOJF1EDdeieaLBmjEIpUBAP8ZGeCAvEQ0gQbXetI6sEAFHRPm6MQ/rkjShPJB4iHIFqgMu9oPMwcvmfwzufbAXVIe2RiBu88i6PyvnPUwDpM8XKS3ZVndo8DoliM8HeTfoFq/UvQEW1mIJCVJAk02mb9c1ENEMzhZjkVfkRdVJStTBo8vP00ac8DAs4evn7qrSsI/II1L8gm00JN0N5zKzIZE+DkejG9J8iS37sQ3tm1EafFSQHlHV1AsvUlgmWeDUG0QPwmwKApLjIamCG1z2VoKQzRA/FaAoqXfInfsHM0RQRZe6QgoiBeSPlSrSWZ3lyRF4VNQ4yAeC0BhT+tqSXM9kmpaJvRaeo01iga2RCzoxLVIOKRk7JDqeBc1o4ssgaI9tG1k8/ZZKc1iIqkgAelCogw7OasBTJaO9WCyrT2VW2UZA0QD0FFrJosKoOfR3OBrsmlg9TX07rgzMIQQD6UhkPqQJZoZG0IoOVn6WAxCkJJTdVMSdMq/bOa8PP/lg8p2VKTywa9+8scBD0ozIfQPFWI8j113o1MsZoFWQKhjA3oSSlvWtBDITgDshYEws/5ADUcJdAc7IUDiIKsAaFLESeO6WBercvbUAiuQXBewl/dSdEJZB27VQAq6U1lf8odnrtwL59zPg/iw2nrmQwEGuRACKf19VTNNZwah67HvsOeSa4C0SmwKNmZyDJ6vfVmOHXHxqTowrT8QD3dKdCmYgChJMAulxR7WjwCwVwdHP5CgViPdC4BRA9pMRbXK9NNjEKwD3Mp2XH6Xe+2IpHGwlUwINgkpsR7q+kWAaujGuv1bovqptN6qltDyiXhe0mriQ2QXjVYy25HQ7OcGmC04kc6BPfyCEISZdiUU8MUanWrU5mJahJ66kYokJa2Jp19LjxHTkk+lqqNysL7vwFWvdx0CO5pxINM3RXSEcYtqlDLV97plWtaZrdYI5jZr7KKP4AlICyn2upZaf5J0NS6GY2wQSsspjZsHKc0XZ++yvlWeL6wTBak1RxYCoJQcnofSFLlfBak9pMpc4sGEM2rC0l/Aw2V81kQLzhluP+7+FTFHIGqnV4VeDikZ0G8n0jA8GYdIpkSvqH/NBDuyoyAyAyQa7Sj2GLyFXj6cEZAlKzCWTdiW66QJDKmrxH/AKIhUzIuhk0UAAAAAElFTkSuQmCC" width="50" height="50">
-  </tr><p>And your flight is scheduled to depart at  <b> <%=@departTime%></b></p>
-    </div>
-
-    </div>
-
-
 </div>

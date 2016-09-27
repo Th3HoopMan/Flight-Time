@@ -14,8 +14,10 @@ $(document).ready(function(){
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
     document.getElementById("flightdate").defaultValue = (yyyy + '-' + mm + '-' + dd);
+    document.getElementById("flightdate").min = (yyyy + '-' + mm + '-' + dd);
     //disable GPS button if not SSL certificate
-    if (location.protocal !== 'https:') {
+    console.log(document.location.protocal);
+    if (document.location.protocal !== 'http:') {
         $("#gpsText").html('GPS Requires HTTPS')
         document.getElementById("gpsBtn").disabled = true;
     }
@@ -46,6 +48,7 @@ $(document).ready(function(){
     });
 
     $("#submit").click(function(){
+        $("#container-warning").html("")
         flightdate = document.getElementById("flightdate").value;
         flightnum = document.getElementById("flightnum").value;
         userlocation = $("#loc-end-id").val()
@@ -62,7 +65,7 @@ $(document).ready(function(){
             return;
         }
         $('#result-panel').html("")
-        document.getElementById("spinner-div").style.visibility = "visible";
+        document.getElementById("spinner-div").style.display = "block";
         // AJAX CALL TO GET LATLNG FOR GOOGLE MAPS CALCULATION
         $.ajax({
             type: 'post',
@@ -97,8 +100,7 @@ $(document).ready(function(){
                                 usertime: today
                             },
                             success: function(result){
-                                $("#container-warning").html("")
-                                document.getElementById("spinner-div").style.visibility = "hidden";
+                                document.getElementById("spinner-div").style.display = "none";
                                 $('#result-panel').html(result)
                             }
                         })
@@ -108,7 +110,7 @@ $(document).ready(function(){
                 });
             },
             error: function(response){
-                document.getElementById("spinner-div").style.visibility = "hidden";
+                document.getElementById("spinner-div").style.display = "none";
                 $("#container-warning").html('<div class="alert alert-warning alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Error:</strong> flight does not exist for that date. </div>')
             }
         })
